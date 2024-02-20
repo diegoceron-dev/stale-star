@@ -1,4 +1,6 @@
 ---
+import HelloWorld from './HelloWorld.vue';
+
 interface Props {
 	title: string;
 	body: string;
@@ -17,6 +19,8 @@ const { href, title, body } = Astro.props;
 		<p>
 			{body}
 		</p>
+		<hr>
+		<HelloWorld />
 	</a>
 </li>
 <style>
