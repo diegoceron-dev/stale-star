@@ -1,17 +1,10 @@
 import { assert, expect, test } from "vitest";
-// import HelloWorld from "../src/components/HelloWorld.vue";
 import { mount } from "@vue/test-utils";
+import { render } from '@testing-library/vue';
 
-// const wrapper = mount(HelloWorld);
+import Navbar from "../src/components/navbar/Navbar.vue";
 
-// Edit an assertion and save to see HMR in action
-
-test("Math.sqrt()", () => {
-  expect(Math.sqrt(4)).toBe(2);
-  expect(Math.sqrt(144)).toBe(12);
-  expect(Math.sqrt(2)).toBe(Math.SQRT2);
-});
-
+/* Vitest */
 test("JSON", () => {
   const input = {
     foo: "hello",
@@ -24,6 +17,14 @@ test("JSON", () => {
   assert.deepEqual(JSON.parse(output), input, "matches original");
 });
 
-/* test("renders message", async () => {
-    expect(wrapper.text()).toContain('Hello World');
-}); */
+/* Test Utils */
+test("renders message", async () => {
+    const wrapper = mount(Navbar);
+    expect(wrapper.text()).toContain('Navbar');
+});
+
+/* Testing Library */
+test('renders navbar component with correct text', async () => {
+  const { getByText } = render(Navbar);
+  getByText('Navbar');
+});
