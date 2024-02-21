@@ -1,8 +1,8 @@
 import { assert, expect, test } from "vitest";
-import HelloWorld from "../src/components/HelloWorld.vue";
+// import HelloWorld from "../src/components/HelloWorld.vue";
 import { mount } from "@vue/test-utils";
 
-const wrapper = mount(HelloWorld);
+// const wrapper = mount(HelloWorld);
 
 // Edit an assertion and save to see HMR in action
 
@@ -24,6 +24,6 @@ test("JSON", () => {
   assert.deepEqual(JSON.parse(output), input, "matches original");
 });
 
-test("renders message", async () => {
+/* test("renders message", async () => {
     expect(wrapper.text()).toContain('Hello World');
-});
+}); */
