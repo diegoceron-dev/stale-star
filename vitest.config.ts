@@ -7,4 +7,9 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom'
   },
+  resolve: {
+    alias: {
+      '@': '/path/to/src',
+    },
+  },
 })
