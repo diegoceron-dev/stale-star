@@ -13,7 +13,7 @@ const clickProfile = () => {
   <section>
     <div class="w-full">
       <nav class="bg-slate-500 h-22">
-        <div class="mx-auto max-w-8xl py-4 px-8 sm:px-6 lg:px-12">
+        <div class="mx-auto max-w-8xl py-4 px-8 sm:px-6 md:px-2 lg:px-12">
           <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <!-- Mobile menu button-->
@@ -66,11 +66,11 @@ const clickProfile = () => {
               </button>
             </div>
             <div
-              class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+              class="flex flex-1 items-start justify-center sm:items-stretch sm:justify-start"
             >
               <div class="flex flex-shrink-0 items-center">
                 <img
-                  class="h-14 w-auto"
+                  class="h-6 md:h-8 lg:h-10"
                   src="https://www.palaceresorts.com/Palace_Company_Palace_Resorts_84b80cd70a.svg"
                   alt="Your Company"
                 />
@@ -177,7 +177,7 @@ const clickProfile = () => {
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a
+<!--             <a
               href="#"
               class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
               aria-current="page"
@@ -187,7 +187,7 @@ const clickProfile = () => {
               href="#"
               class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
               >Team</a
-            >
+            > -->
           </div>
         </div>
       </nav>

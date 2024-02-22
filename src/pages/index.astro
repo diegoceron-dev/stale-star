@@ -1,8 +1,10 @@
 ---
-import '@/styles/globals.css'
-import LayoutPublic from '../layouts/LayoutPublic.astro';
+import "@/styles/globals.css";
+import LayoutPublic from "../layouts/LayoutPublic.astro";
+
+import Booking from "../components/booking/Booking.vue";
 ---
 
 <LayoutPublic title="The Palace Company - Home">
-</LayoutPublic> 
- 
+  <Booking client:visible client:only />
+</LayoutPublic>
