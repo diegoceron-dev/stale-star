@@ -9,7 +9,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/path/to/src',
+      '@': '/src',
     },
   },
 })
