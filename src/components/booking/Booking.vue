@@ -44,7 +44,7 @@ const selectItem = (brandId: string, resortId: string) => {
       </div>
 
       <div class="w-full">
-        <Select>
+        <Select :value="resortSelected.value">
           <SelectTrigger>
             <SelectValue placeholder="Select a destination" />
           </SelectTrigger>
@@ -65,6 +65,8 @@ const selectItem = (brandId: string, resortId: string) => {
             </SelectGroup>
           </SelectContent>
         </Select>
+
+        value {{ resortSelected.value }}
       </div>
 
       <div class="w-full flex space md:pl-8">

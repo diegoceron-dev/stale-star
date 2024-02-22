@@ -23,6 +23,11 @@ const id = ref(props.id);
 watch(id, (newValue, oldValue) => {
   emit("update:id", newValue);
 });
+
+const selectCover = () => {
+  id.value = props.item.id
+  console.log(id.value)
+}
 </script>
 
 <template>
@@ -31,6 +36,7 @@ watch(id, (newValue, oldValue) => {
       <ContextMenuTrigger>
         <div class="overflow-hidden rounded-md">
           <img
+            @click="selectCover"
             :id="item.id"
             :src="item.cover"
             :alt="item.title"

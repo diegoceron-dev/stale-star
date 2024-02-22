@@ -11,6 +11,10 @@ const allInclusiveList = useStore(allInclusive);
 const europeanPlanList = useStore(europeanPlan);
 
 onMounted(() => {});
+
+const handleIdUpdate = (newId: string) => {
+  resortSelected.set(newId)
+}
 </script>
 
 <template>
@@ -33,6 +37,8 @@ onMounted(() => {});
             aspect-ratio="square"
             :width="250"
             :height="230"
+            :id="resortSelected.value"
+            @update:id="handleIdUpdate"
           />
         </div>
         <ScrollBar orientation="horizontal" />
@@ -57,7 +63,9 @@ onMounted(() => {});
             class="w-[130px] md:w-[180px]"
             aspect-ratio="square"
             :width="250"
-            :height="230"vue3 
+            :height="230"
+            :id="resortSelected.value"
+            @update:id="handleIdUpdate"
           />
         </div>
         <ScrollBar orientation="horizontal" />
