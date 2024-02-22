@@ -36,11 +36,11 @@ withDefaults(defineProps<CoverProps>(), {
         </div>
       </ContextMenuTrigger>
     </ContextMenu>
-    <div class="space-y-1 text-sm">
-      <h3 class="font-medium leading-none">
+    <div class="space-y-2 text-sm">
+      <h3 class="text-lg font-medium leading-none">
         {{ item.title }}
       </h3>
-      <p class="text-xs text-muted-foreground">
+      <p class="text-base text-muted-foreground">
         {{ item.subtitle }}
       </p>
     </div>

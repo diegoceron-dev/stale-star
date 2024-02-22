@@ -140,7 +140,7 @@ const europeanPlan: CoverType[] = [
     </div>
     <div class="relative flex items-center justify-center content-center">
       <ScrollArea class="border rounded-md w-[80%] whitespace-nowrap">
-        <div class="flex space-x-4 pb-4">
+        <div class="flex space-x-10 pb-4">
           <Cover
             v-for="cover in allInclusive"
             :key="cover.title"
@@ -163,7 +163,7 @@ const europeanPlan: CoverType[] = [
     </div>
     <div class="relative flex items-center justify-center content-center">
       <ScrollArea class="border rounded-md w-[80%] whitespace-nowrap">
-        <div class="flex space-x-4 pb-4">
+        <div class="flex space-x-10 pb-4">
           <Cover
             v-for="cover in europeanPlan"
             :key="cover.title"
