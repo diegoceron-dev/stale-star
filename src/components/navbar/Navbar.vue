@@ -12,8 +12,8 @@ const clickProfile = () => {
 <template>
   <section>
     <div class="w-full">
-      <nav class="bg-slate-100 h-24">
-        <div class="mx-auto max-w-10xl py-4 px-8 sm:px-6 lg:px-12">
+      <nav class="bg-slate-500 h-22">
+        <div class="mx-auto max-w-8xl py-4 px-8 sm:px-6 lg:px-12">
           <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <!-- Mobile menu button-->
@@ -71,7 +71,7 @@ const clickProfile = () => {
               <div class="flex flex-shrink-0 items-center">
                 <img
                   class="h-14 w-auto"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Palace_Resorts_Brand_Logo.svg/2560px-Palace_Resorts_Brand_Logo.svg.png"
+                  src="https://www.palaceresorts.com/Palace_Company_Palace_Resorts_84b80cd70a.svg"
                   alt="Your Company"
                 />
                <!--  <span class="pl-4 uppercase font-semibold"> The Palace Company</span> -->
@@ -139,7 +139,7 @@ const clickProfile = () => {
                           :class="navigationMenuTriggerStyle()"
                           class="!h-full !min-h-full"
                         >
-                          Your Profile
+                          <span class="!text-sm">Your Profile</span>
                         </NavigationMenuLink>
                       </NuxtLink>
                     </NavigationMenuItem>
