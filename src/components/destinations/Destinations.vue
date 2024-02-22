@@ -5,6 +5,7 @@ import Cover from "@/components/cover/Cover.vue";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { allInclusive, europeanPlan } from "@/store/destinations";
 import { useStore } from "@nanostores/vue";
+import { brandSelected, resortSelected } from "@/store/booking";
 
 const allInclusiveList = useStore(allInclusive);
 const europeanPlanList = useStore(europeanPlan);
@@ -16,7 +17,7 @@ onMounted(() => {});
   <div>
     <div class="space-y-1">
       <h3
-        class="flex items-center justify-between content-center py-12 px-16 text-1xl font-semibold tracking-tight"
+        class="flex items-center justify-between content-center py-8 px-16 text-1xl font-semibold tracking-tight"
       >
         All Inclusive Resorts
       </h3>
@@ -28,7 +29,7 @@ onMounted(() => {});
             v-for="cover in allInclusiveList"
             :key="cover.title"
             :item="cover"
-            class="w-[180px]"
+            class="w-[130px] md:w-[180px]"
             aspect-ratio="square"
             :width="250"
             :height="230"
@@ -45,7 +46,7 @@ onMounted(() => {});
         European Plan Resorts and Hotels
       </h3>
     </div>
-
+    
     <div class="relative flex items-center justify-center content-center">
       <ScrollArea class="rounded-md w-[80%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
@@ -53,10 +54,10 @@ onMounted(() => {});
             v-for="cover in europeanPlanList"
             :key="cover.title"
             :item="cover"
-            class="w-[180px]"
+            class="w-[130px] md:w-[180px]"
             aspect-ratio="square"
             :width="250"
-            :height="230"
+            :height="230"vue3 
           />
         </div>
         <ScrollBar orientation="horizontal" />

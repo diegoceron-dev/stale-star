@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { Separator } from "@/components/ui/separator";
 import DateRange from "@/components/dateRage/DateRange.vue";
 import {
@@ -9,15 +10,26 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import Destinations from '@/components/destinations/Destinations.vue'
-import Button from '@/components/ui/button/Button.vue'
+} from "@/components/ui/select";
+import Destinations from "@/components/destinations/Destinations.vue";
+import Button from "@/components/ui/button/Button.vue";
+import { allResorts } from "@/store/destinations";
+import { brandSelected, resortSelected } from "@/store/booking";
+import { useStore } from "@nanostores/vue";
 
+const allResortsList = useStore(allResorts);
+
+const selectItem = (brandId: string, resortId: string) => {
+  brandSelected.set(brandId);
+  resortSelected.set(resortId);
+};
 </script>
 
 <template>
   <div>
-    <div class="flex flex-col md:flex-row items-center justify-between content-center py-12 px-16">
+    <div
+      class="flex flex-col md:flex-row items-center justify-between content-center p-4 space-y-4"
+    >
       <div class="w-full space-y-1">
         <h2 class="text-2xl font-semibold tracking-tight">
           Choose your destination
@@ -38,21 +50,32 @@ import Button from '@/components/ui/button/Button.vue'
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple"> Apple </SelectItem>
+              <SelectLabel v-for="brands in allResortsList" :key="brands.brand">
+                {{ brands.brand }}
+                <SelectItem
+                  @click="selectItem(brands.brandId, resort.id)"
+                  class="font-extralight"
+                  v-for="resort in brands.items"
+                  :key="resort.id"
+                  :value="resort.id"
+                >
+                  {{ resort.title }} {{ resort.subtitle }}
+                </SelectItem>
+              </SelectLabel>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
-      
+
       <div class="w-full flex space md:pl-8">
-        <Button class="h-full bg-slate-500  flex-auto content-center ">SEE RATES</Button>
+        <Button class="h-full bg-slate-500 flex-auto content-center"
+          >SEE RATES</Button
+        >
       </div>
     </div>
 
     <Separator class="my-4" />
 
     <Destinations />
-
   </div>
 </template>
