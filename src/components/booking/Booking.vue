@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Separator } from "@/components/ui/separator";
 import DateRange from "@/components/dateRage/DateRange.vue";
 import {
@@ -18,9 +18,10 @@ import { brandSelected, resortSelected } from "@/store/booking";
 import { useStore } from "@nanostores/vue";
 
 const allResortsList = useStore(allResorts);
+const resortId = useStore(resortSelected);
 
-const selectItem = (brandId: string, resortId: string) => {
-  brandSelected.set(brandId);
+const selectItem = (resortId: string) => {
+  console.log(resortId);
   resortSelected.set(resortId);
 };
 </script>
@@ -44,7 +45,7 @@ const selectItem = (brandId: string, resortId: string) => {
       </div>
 
       <div class="w-full">
-        <Select :value="resortSelected.value">
+        <Select @update:modelValue="selectItem" :modelValue="resortId">
           <SelectTrigger>
             <SelectValue placeholder="Select a destination" />
           </SelectTrigger>
@@ -53,7 +54,6 @@ const selectItem = (brandId: string, resortId: string) => {
               <SelectLabel v-for="brands in allResortsList" :key="brands.brand">
                 {{ brands.brand }}
                 <SelectItem
-                  @click="selectItem(brands.brandId, resort.id)"
                   class="font-extralight"
                   v-for="resort in brands.items"
                   :key="resort.id"
@@ -65,8 +65,6 @@ const selectItem = (brandId: string, resortId: string) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-
-        value {{ resortSelected.value }}
       </div>
 
       <div class="w-full flex space md:pl-8">

@@ -9,6 +9,7 @@ import { brandSelected, resortSelected } from "@/store/booking";
 
 const allInclusiveList = useStore(allInclusive);
 const europeanPlanList = useStore(europeanPlan);
+const resortId = useStore(resortSelected)
 
 onMounted(() => {});
 
@@ -17,7 +18,7 @@ const handleIdUpdate = (newId: string) => {
 }
 </script>
 
-<template>
+<template>  
   <div>
     <div class="space-y-1">
       <h3
@@ -37,7 +38,7 @@ const handleIdUpdate = (newId: string) => {
             aspect-ratio="square"
             :width="250"
             :height="230"
-            :id="resortSelected.value"
+            :id="resortId"
             @update:id="handleIdUpdate"
           />
         </div>
@@ -52,7 +53,7 @@ const handleIdUpdate = (newId: string) => {
         European Plan Resorts and Hotels
       </h3>
     </div>
-    
+
     <div class="relative flex items-center justify-center content-center">
       <ScrollArea class="rounded-md w-[80%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
@@ -64,7 +65,7 @@ const handleIdUpdate = (newId: string) => {
             aspect-ratio="square"
             :width="250"
             :height="230"
-            :id="resortSelected.value"
+            :id="resortId"
             @update:id="handleIdUpdate"
           />
         </div>

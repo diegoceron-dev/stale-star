@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted, defineEmits } from "vue";
+import { ref, watch, onMounted, onUnmounted, defineEmits, computed } from "vue";
 import type { Cover as CoverType } from "@/components/cover/cover.type";
 import { cn } from "@/lib/utils";
 import { ContextMenu, ContextMenuTrigger } from "@/components/ui/context-menu";
@@ -25,9 +25,10 @@ watch(id, (newValue, oldValue) => {
 });
 
 const selectCover = () => {
-  id.value = props.item.id
-  console.log(id.value)
-}
+  id.value = props.item.id;
+  emit("update:id", props.item.id);
+};
+
 </script>
 
 <template>
@@ -43,9 +44,10 @@ const selectCover = () => {
             :width="width"
             :height="height"
             :class="
-              cn(
-                'h-auto w-auto object-cover transition-all hover:scale-105',
-                aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square'
+              cn( 
+                'h-auto w-auto object-cover transition-all hover:scale-104',
+                aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square',
+                props.id === item.id ? 'border-[6px] border-slate-500 hover:border-[8px] rounded-lg shadow-neon shadow-5xl shadow-cyan-700/90' : ''
               )
             "
           />
@@ -62,3 +64,4 @@ const selectCover = () => {
     </div>
   </div>
 </template>
+

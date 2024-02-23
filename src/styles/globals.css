@@ -76,3 +76,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .shadow-neon {
+    filter: drop-shadow(0 0 5px #4dabf7) drop-shadow(0 0 10px #4dabf7)
+      drop-shadow(0 0 20px #4dabf7) drop-shadow(0 0 40px #4dabf7)
+      drop-shadow(0 0 80px #4dabf7);
+  }
+}
