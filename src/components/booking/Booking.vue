@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed } from "vue";
 import { Separator } from "@/components/ui/separator";
 import DateRange from "@/components/dateRage/DateRange.vue";
 import {
@@ -21,9 +21,12 @@ const allResortsList = useStore(allResorts);
 const resortId = useStore(resortSelected);
 
 const selectItem = (resortId: string) => {
-  console.log(resortId);
   resortSelected.set(resortId);
 };
+
+const disableSearchRates = computed(() => {
+  return String(resortId.value) === ''
+})
 </script>
 
 <template>
@@ -67,8 +70,10 @@ const selectItem = (resortId: string) => {
         </Select>
       </div>
 
-      <div class="w-full flex space md:pl-8">
-        <Button class="h-full bg-slate-500 flex-auto content-center"
+      <div class="w-full flex space md:pl-8 md:pr-8">
+        <Button 
+        class="h-full bg-slate-500 flex-auto content-center"
+        :disabled="disableSearchRates"
           >SEE RATES</Button
         >
       </div>
