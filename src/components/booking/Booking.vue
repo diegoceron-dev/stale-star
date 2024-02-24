@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { Separator } from "@/components/ui/separator";
 import DateRange from "@/components/dateRage/DateRange.vue";
 import {
@@ -11,28 +11,41 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Destinations from "@/components/destinations/Destinations.vue";
 import Button from "@/components/ui/button/Button.vue";
 import { allResorts } from "@/store/destinations";
-import { brandSelected, resortSelected } from "@/store/booking";
+import { brandSelected, resortSelected, step } from "@/store/booking";
 import { useStore } from "@nanostores/vue";
+import { Loader2 } from "lucide-vue-next";
 
 const allResortsList = useStore(allResorts);
 const resortId = useStore(resortSelected);
+const stepView = useStore(step);
+const loading = ref(false);
 
 const selectItem = (resortId: string) => {
   resortSelected.set(resortId);
 };
 
 const disableSearchRates = computed(() => {
-  return String(resortId.value) === ''
-})
+  return String(resortId.value) === "";
+});
+
+const searchRates = () => {
+  loading.value = !loading.value;
+  step.set('rooms')
+
+  setTimeout(() => {
+    loading.value = !loading.value;
+  }, 2000);
+
+  console.log(step.value)
+};
 </script>
 
 <template>
   <div>
     <div
-      class="flex flex-col md:flex-row items-center justify-between content-center p-4 space-y-4"
+      class="flex flex-col items-center content-center justify-between p-4 space-y-4 md:flex-row"
     >
       <div class="w-full space-y-1">
         <h2 class="text-2xl font-semibold tracking-tight">
@@ -70,17 +83,20 @@ const disableSearchRates = computed(() => {
         </Select>
       </div>
 
-      <div class="w-full flex space md:pl-8 md:pr-8">
-        <Button 
-        class="h-full bg-slate-500 flex-auto content-center"
-        :disabled="disableSearchRates"
-          >SEE RATES</Button
+      <div class="flex w-full space md:pl-8 md:pr-8">
+        <Button
+          class="content-center flex-auto h-full bg-slate-500"
+          :disabled="disableSearchRates"
+          @click="searchRates"
         >
+          <div v-if="loading">
+            <Loader2 class="w-4 h-4 mr-2 animate-spin" /> 
+          </div>
+          <div v-else> SEE RATES</div>
+        </Button>
       </div>
     </div>
 
     <Separator class="my-4" />
-
-    <Destinations />
   </div>
 </template>

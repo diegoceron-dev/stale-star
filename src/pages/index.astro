@@ -1,10 +1,11 @@
 ---
 import "@/styles/globals.css";
-import LayoutPublic from "../layouts/LayoutPublic.astro";
-
-import Booking from "../components/booking/Booking.vue";
+import LayoutPublic from "@/layouts/LayoutPublic.astro";
+import Booking from "@/components/booking/Booking.vue";
+import SteperView from "@/components/steperView/SteperView.vue";
 ---
 
 <LayoutPublic title="The Palace Company - Home">
-  <Booking client:load client:visible client:only />
+  <Booking client:load />
+  <SteperView client:load />
 </LayoutPublic>
