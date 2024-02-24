@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import Button from "@/components/ui/button/Button.vue"
 import { ref } from "vue";
 
 const showProfileOptions = ref(false);
@@ -72,36 +83,75 @@ const clickProfile = () => {
                 <img
                   class="h-6 md:h-8 lg:h-10"
                   src="https://www.palaceresorts.com/Palace_Company_Palace_Resorts_84b80cd70a.svg"
-                  alt="Your Company"
+                  alt="The Palace Company"
                 />
-               <!--  <span class="pl-4 uppercase font-semibold"> The Palace Company</span> -->
+                <!--  <span class="pl-4 uppercase font-semibold"> The Palace Company</span> -->
               </div>
-  
             </div>
             <div
               class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
             >
-              <button
-                type="button"
-                class="relative rounded-full bg-slate-300 p-1 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                <span class="absolute -inset-1.5"></span>
-                <span class="sr-only">View notifications</span>
-                <svg
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
+              <Sheet>
+                <SheetTrigger as-child>
+                    <button
+                      type="button"
+                      class="relative rounded-full bg-slate-300 p-1 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span class="absolute -inset-1.5"></span>
+                      <span class="sr-only">View Car</span>
+                      <svg
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 510 510"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306
+  c-2.55,7.65-5.1,17.85-5.1,25.5c0,28.05,22.95,51,51,51h306v-51H163.2c-2.55,0-5.1-2.55-5.1-5.1v-2.551l22.95-43.35h188.7
+  c20.4,0,35.7-10.2,43.35-25.5L504.9,89.25c5.1-5.1,5.1-7.65,5.1-12.75c0-15.3-10.2-25.5-25.5-25.5H107.1L84.15,0H0z M408,408
+  c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S436.05,408,408,408z"
+                        />
+                      </svg>
+                    </button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Booking in Progress</SheetTitle>
+                    <SheetDescription>
+                      Elevate Your Travel Experience with Our Premium Selections!
+                    </SheetDescription>
+                  </SheetHeader>
+                  <SheetFooter>
+                    <SheetClose as-child>
+                      <Button type="submit"> Complete Reservation </Button>
+                    </SheetClose>
+                  </SheetFooter>
+                </SheetContent>
+              </Sheet>
+
+              <div class="pl-2">
+                <button
+                  type="button"
+                  class="relative rounded-full bg-slate-300 p-1 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                  />
-                </svg>
-              </button>
+                  <span class="absolute -inset-1.5"></span>
+                  <span class="sr-only">View notifications</span>
+                  <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                    />
+                  </svg>
+                </button>
+              </div>
 
               <!-- Profile dropdown -->
               <div class="relative ml-3">
@@ -177,7 +227,7 @@ const clickProfile = () => {
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-<!--             <a
+            <!--             <a
               href="#"
               class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
               aria-current="page"
