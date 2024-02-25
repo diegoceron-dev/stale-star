@@ -2,6 +2,7 @@
 import CardRoom from "@/components/rooms/CardRoom.vue";
 import type { Room as RoomType } from "@/components/rooms/room.type";
 import { computed } from "vue";
+import Container from "@/components/ui/containter/Container.vue";
 
 const items: RoomType[] = [
   {
@@ -102,10 +103,12 @@ const rooms = computed(() => {
 
 <template>
   <div
-    class="items-start justify-center gap-12 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-3 space-y-4"
+    class="items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-3"
   >
-    <div v-for="room in rooms" :key="room.title">
-      <CardRoom :item="room" class="" />
+    <div class="col-span-2 grid items-start gap-6 lg:col-span-1" v-for="room in rooms" :key="room.title">
+      <Container>
+        <CardRoom :item="room"/>
+      </Container>
     </div>
   </div>
 </template>

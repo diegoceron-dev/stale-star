@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { type Cover as CoverType } from "@/components/cover/cover.type";
 import Cover from "@/components/cover/Cover.vue";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { allInclusive, europeanPlan } from "@/store/destinations";
 import { useStore } from "@nanostores/vue";
-import { brandSelected, resortSelected } from "@/store/booking";
+import { resortSelected } from "@/store/booking";
 
 const allInclusiveList = useStore(allInclusive);
 const europeanPlanList = useStore(europeanPlan);

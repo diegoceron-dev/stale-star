@@ -14,72 +14,74 @@ import { ref } from "vue";
 import { cn } from "@/lib/utils";
 import Container from "@/components/ui/containter/Container.vue";
 import Autoplay from "embla-carousel-autoplay";
+import { showSheet, rooms } from "@/store/shoppingCar";
+import { useStore } from "@nanostores/vue";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 interface CardRoomProps {
   item: RoomType;
 }
 const props = withDefaults(defineProps<CardRoomProps>(), {});
+
+const bookIt = (room: RoomType) => {
+  if (rooms.value?.length! <= 2) {
+    const roomsInShoppingCar: RoomType[] = rooms.get();
+    roomsInShoppingCar.push(room);
+    rooms.set(roomsInShoppingCar);
+    showSheet.set(true);
+  }
+};
 </script>
 
 <template>
-  <div
-    class="col-span-2 grid items-start gap-6 lg:col-span-2 lg:grid-cols-1 xl:col-span-1 xl:grid-cols-1"
-  >
-    <Container>
-      <Card :class="cn('w-[380px]', $attrs.class ?? '')">
-        <CardHeader class="bg-slate-400 text-white font-light">
-          <CardTitle>{{ item.title }}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div
-            class="!pt-2 !pb-0 flex justify-center content-center align-bottom items-center space-x-4"
-          >
-            <Container>
-              <Carousel
-                class="w-full max-w-xs"
-                :plugins="[
-                  Autoplay({
-                    delay: 5000,
-                  }),
-                ]"
-              >
-                <CarouselContent>
-                  <CarouselItem v-for="cover in item.covers" :key="item.id">
-                    <Cover
-                      :key="item.title"
-                      :item="{ id: item.title, cover: cover }"
-                      aspect-ratio="square"
-                    />
-                  </CarouselItem>
-                </CarouselContent>
-                <!--  <CarouselPrevious />
+  <Card>
+    <CardHeader class="rounded bg-slate-400 text-white font-light">
+      <CardTitle>{{ item.title }}</CardTitle>
+      <CardDescription class="pt-2 bg-slate-400 text-white font-light">{{
+        item.description
+      }}</CardDescription>
+    </CardHeader>
+    <CardContent class="grid gap-6 !pt-2 pb-4">
+      <div class="flex items-center justify-center space-x-2">
+        <Carousel
+          class="w-full max-w-xs"
+          :plugins="[
+            Autoplay({
+              delay: 5000,
+            }),
+          ]"
+        >
+          <CarouselContent>
+            <CarouselItem v-for="cover in item.covers" :key="item.id">
+              <Cover
+                :key="item.title"
+                :item="{ id: item.title, cover: cover }"
+                aspect-ratio="square"
+              />
+            </CarouselItem>
+          </CarouselContent>
+          <!--  <CarouselPrevious />
               <CarouselNext /> -->
-              </Carousel>
-            </Container>
-          </div>
-          <CardDescription>
-            <div>
-              <span class="font-light"> {{ item.description }} </span>
-              <span class="font-light flex justify-end p-2 italic underline">Rates from ${{ item.price }}</span>
-            </div>
-          </CardDescription>
-          <div class="flex flex-col space-y-4 pb-2 justify-between">
-            <div class="flex flex-col space-y-4">
-              <Button class="bg-sky-800/70 hover:bg-sky-700/8 uppercase"
-                >Hook it up!</Button
-              >
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter
+        </Carousel>
+      </div>
+      <div class="flex items-center justify-between space-x-2">
+        <div>
+          <span class="font-light"> {{ item.description }} </span>
+          <span class="font-light flex justify-end p-2 italic underline"
+            >Rates from ${{ item.price }}</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center justify-between space-x-2">
+        <Button variant="outline" class="w-full bg-slate-400 hover:bg-slate-500 uppercase hover:text-white text-white"  @click="bookIt(item)"> Book it! </Button>
+      </div>
+    </CardContent>
+    <CardFooter
           class="bg-slate-400/20 text-dark font-extralight pt-4 flex flex-col justify-end items-end text-sm"
         >
           <div class="flex flex-col">Amenities: {{ item.amenities }}</div>
@@ -101,7 +103,5 @@ const props = withDefaults(defineProps<CardRoomProps>(), {});
             </div>
           </div>
         </CardFooter>
-      </Card>
-    </Container>
-  </div>
+  </Card>
 </template>

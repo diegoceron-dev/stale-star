@@ -2,22 +2,26 @@
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
   Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Button from "@/components/ui/button/Button.vue"
-import { ref } from "vue";
+import Button from "@/components/ui/button/Button.vue";
+import { ref, watch } from "vue";
+import { showSheet } from "@/store/shoppingCar";
+import ShoppingCar from "@/components/shoppingCar/ShoppingCar.vue";
 
 const showProfileOptions = ref(false);
 
 const clickProfile = () => {
   showProfileOptions.value = !showProfileOptions.value;
 };
+
+const shoppingCarHandle = (value: boolean) => {
+  showSheet.set(value)
+};
+
+watch(showSheet, (newValue, oldValue) => {
+  shoppingCarHandle(newValue.value!)
+});
 </script>
 
 <template>
@@ -91,42 +95,30 @@ const clickProfile = () => {
             <div
               class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
             >
-              <Sheet>
+              <Sheet @update:open="shoppingCarHandle">
                 <SheetTrigger as-child>
-                    <button
-                      type="button"
-                      class="relative rounded-full bg-slate-300 p-1 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  <button
+                    type="button"
+                    class="relative rounded-full bg-slate-300 p-1 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <span class="absolute -inset-1.5"></span>
+                    <span class="sr-only">View Car</span>
+                    <svg
+                      class="h-6 w-6"
+                      fill="currentColor"
+                      viewBox="0 0 510 510"
+                      aria-hidden="true"
                     >
-                      <span class="absolute -inset-1.5"></span>
-                      <span class="sr-only">View Car</span>
-                      <svg
-                        class="h-6 w-6"
-                        fill="currentColor"
-                        viewBox="0 0 510 510"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306
+                      <path
+                        d="M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306
   c-2.55,7.65-5.1,17.85-5.1,25.5c0,28.05,22.95,51,51,51h306v-51H163.2c-2.55,0-5.1-2.55-5.1-5.1v-2.551l22.95-43.35h188.7
   c20.4,0,35.7-10.2,43.35-25.5L504.9,89.25c5.1-5.1,5.1-7.65,5.1-12.75c0-15.3-10.2-25.5-25.5-25.5H107.1L84.15,0H0z M408,408
   c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S436.05,408,408,408z"
-                        />
-                      </svg>
-                    </button>
+                      />
+                    </svg>
+                  </button>
                 </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>Booking in Progress</SheetTitle>
-                    <SheetDescription>
-                      Elevate Your Travel Experience with Our Premium Selections!
-                    </SheetDescription>
-                  </SheetHeader>
-                  <SheetFooter>
-                    <SheetClose as-child>
-                      <Button type="submit"> Complete Reservation </Button>
-                    </SheetClose>
-                  </SheetFooter>
-                </SheetContent>
+                  <ShoppingCar />
               </Sheet>
 
               <div class="pl-2">
