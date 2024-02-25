@@ -90,6 +90,57 @@ const items: RoomType[] = [
     price: 5388,
     rank: 3.5,
   },
+  {
+    id: "6",
+    title: "Beachfront Bungalow",
+    description:
+      "Wake up to the sound of the waves and enjoy stunning ocean views from your private beachfront bungalow.",
+    covers: [
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+    ],
+    amenities:
+      "Private beach access, flat-screen TV, fully equipped kitchen, and a private deck with ocean views.",
+    avaibility: true,
+    oldPrice: 5200,
+    price: 5388,
+    rank: 3.5,
+  },
+  {
+    id: "7",
+    title: "Beachfront Bungalow",
+    description:
+      "Wake up to the sound of the waves and enjoy stunning ocean views from your private beachfront bungalow.",
+    covers: [
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+    ],
+    amenities:
+      "Private beach access, flat-screen TV, fully equipped kitchen, and a private deck with ocean views.",
+    avaibility: true,
+    oldPrice: 5200,
+    price: 5388,
+    rank: 3.5,
+  },
+  {
+    id: "8",
+    title: "Beachfront Bungalow",
+    description:
+      "Wake up to the sound of the waves and enjoy stunning ocean views from your private beachfront bungalow.",
+    covers: [
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+
+      "https://s3.amazonaws.com/webfiles_palace/clever/booking_engine/2023-30-10-13-33-29-667202original_2023-30-10-13-33-29-6514532022-11-07-15-39-44-661860original-2022-11-07-15-39-44-641035Playacar-deluxe-ocean-view-01.webp",
+    ],
+    amenities:
+      "Private beach access, flat-screen TV, fully equipped kitchen, and a private deck with ocean views.",
+    avaibility: true,
+    oldPrice: 5200,
+    price: 5388,
+    rank: 3.5,
+  },
 ];
 
 const rooms = computed(() => {

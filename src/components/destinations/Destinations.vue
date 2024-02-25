@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeMount } from "vue";
 import Cover from "@/components/cover/Cover.vue";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { allInclusive, europeanPlan } from "@/store/destinations";
 import { useStore } from "@nanostores/vue";
-import { resortSelected } from "@/store/booking";
+import { resortSelected, title, subtitle } from "@/store/booking";
 
 const allInclusiveList = useStore(allInclusive);
 const europeanPlanList = useStore(europeanPlan);
 const resortId = useStore(resortSelected)
 
-onMounted(() => {});
+onMounted(() => {
+  title.set('Choose your destination')
+  subtitle.set('Get to know all our destinations and be surprised.')
+});
 
 const handleIdUpdate = (newId: string) => {
   resortSelected.set(newId)
@@ -27,13 +30,13 @@ const handleIdUpdate = (newId: string) => {
       </h3>
     </div>
     <div class="relative flex items-center justify-center content-center">
-      <ScrollArea class="rounded-md w-[80%] whitespace-nowrap">
+      <ScrollArea class="rounded-md w-[100%] md:w-[90%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
           <Cover
             v-for="cover in allInclusiveList"
             :key="cover.title"
             :item="cover"
-            class="w-[130px] md:w-[180px]"
+            class="w-[130px] md:w-[260px]"
             aspect-ratio="square"
             :width="250"
             :height="230"
@@ -54,13 +57,13 @@ const handleIdUpdate = (newId: string) => {
     </div>
 
     <div class="relative flex items-center justify-center content-center">
-      <ScrollArea class="rounded-md w-[80%] whitespace-nowrap">
+      <ScrollArea class="rounded-md w-[100%] md:w-[90%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
           <Cover
             v-for="cover in europeanPlanList"
             :key="cover.title"
             :item="cover"
-            class="w-[130px] md:w-[180px]"
+            class="w-[130px] md:w-[260px]"
             aspect-ratio="square"
             :width="250"
             :height="230"

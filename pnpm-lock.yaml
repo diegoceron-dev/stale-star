@@ -14,6 +14,9 @@ dependencies:
   '@astrojs/vue':
     specifier: ^4.0.8
     version: 4.0.8(@babel/core@7.23.9)(astro@4.4.1)(vite@5.1.3)(vue@3.4.19)
+  '@fontsource-variable/raleway':
+    specifier: ^5.0.17
+    version: 5.0.17
   '@nanostores/vue':
     specifier: ^0.10.0
     version: 0.10.0(nanostores@0.10.0)(vue@3.4.19)
@@ -762,6 +765,10 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+    dev: false
+
+  /@fontsource-variable/raleway@5.0.17:
+    resolution: {integrity: sha512-wPkYD9UACWS1fM4GUYwKhJDGE5tD1IuVIkGcbccsuip+PmbIRApqDF7tlpkD333xXlmP4tsRZsXkAj8IBTkRrg==, tarball: https://registry.npmjs.org/@fontsource-variable/raleway/-/raleway-5.0.17.tgz}
     dev: false
 
   /@isaacs/cliui@8.0.2:

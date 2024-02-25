@@ -14,6 +14,7 @@
     "@astrojs/check": "^0.5.5",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vue": "^4.0.8",
+    "@fontsource-variable/raleway": "^5.0.17",
     "@nanostores/vue": "^0.10.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vueuse/core": "^10.8.0",

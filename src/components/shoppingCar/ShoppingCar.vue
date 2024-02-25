@@ -45,7 +45,7 @@ const total = computed(() => {
       </SheetDescription>
     </SheetHeader>
 
-    <div class="flex justify-start items-start pt-2">
+    <div class="pt-2">
       <div v-if="roomList.length === 0" class="text-gray-500">
         Your cart is empty.
       </div>
@@ -54,7 +54,7 @@ const total = computed(() => {
           <div
             v-for="product in roomList"
             :key="product.id"
-            class="flex items-start justify-start py-2 space-x-4"
+            class="flex items-start justify-between py-2 space-x-4 border-b"
           >
             <div>
               <Cover
@@ -66,31 +66,21 @@ const total = computed(() => {
                 :height="230"
               />
             </div>
-            <div class="flex flex-col">
-              <div class="font-medium text-lg">
-                {{ product.title }}
+            <div class="flex-grow flex flex-col">
+              <div class="font-medium text-lg flex flex-row justify-between">
+                <div>{{ product.title }}</div>
+                <div class="text-slate-700 font-extralight text-lg">$ {{ product.price }}</div>
               </div>
-              <div class="font-light text-md italic">$ {{ product.price }}</div>
-            </div>
-            <div class="hidden flex items-center space-x-2">
-              <button
-                @click="decrement(product as RoomType)"
-                class="text-sm text-gray-500"
-              >
-                -
-              </button>
-              <button
-                @click="increment(product as RoomType)"
-                class="text-sm text-gray-500"
-              >
-                +
-              </button>
+              <div class="italic font-extralight pt-2">
+                  <Button size="sm" variant="outline"> Remove item</Button>
+                </div>
             </div>
           </div>
+
+        <div class="flex justify-end items-end mt-2 text-slate-700 font-extralight text-lg">
+          Total: ${{ total }}
         </div>
 
-        <div class="mt-2 text-slate-700 font-extralight text-lg border-b">
-          Total: ${{ total }}
         </div>
       </div>
     </div>

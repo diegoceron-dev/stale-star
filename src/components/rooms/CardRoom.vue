@@ -21,6 +21,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext  
 } from "@/components/ui/carousel";
 
 interface CardRoomProps {
@@ -42,9 +44,6 @@ const bookIt = (room: RoomType) => {
   <Card>
     <CardHeader class="rounded bg-slate-400 text-white font-light">
       <CardTitle>{{ item.title }}</CardTitle>
-      <CardDescription class="pt-2 bg-slate-400 text-white font-light">{{
-        item.description
-      }}</CardDescription>
     </CardHeader>
     <CardContent class="grid gap-6 !pt-2 pb-4">
       <div class="flex items-center justify-center space-x-2">
@@ -65,14 +64,14 @@ const bookIt = (room: RoomType) => {
               />
             </CarouselItem>
           </CarouselContent>
-          <!--  <CarouselPrevious />
-              <CarouselNext /> -->
+           <CarouselPrevious />
+              <CarouselNext />
         </Carousel>
       </div>
       <div class="flex items-center justify-between space-x-2">
         <div>
           <span class="font-light"> {{ item.description }} </span>
-          <span class="font-light flex justify-end p-2 italic underline"
+          <span class="font-light flex justify-end p-2 italic underline text-lg text-slate-600"
             >Rates from ${{ item.price }}</span
           >
         </div>
