@@ -30,6 +30,14 @@ const removeItem = (item: RoomType) => {
 
   if (findItem !== undefined) shoppingCarStore.rooms.splice(findItem, 1);
 };
+
+const completeDisabled = computed(() => {
+  return shoppingCarStore.rooms.length === 0
+})
+
+const completeReservation = () => {
+  bookingStore.step = 'payment'
+}
 </script>
 <template>
   <SheetContent side="right" class="w-[90%]">
@@ -90,7 +98,7 @@ const removeItem = (item: RoomType) => {
     </div>
     <SheetFooter class="pt-4">
       <SheetClose as-child>
-        <Button class="bg-slate-400 hover:bg-slate-500" type="submit">
+        <Button class="bg-slate-400 hover:bg-slate-600" type="submit" :disabled="completeDisabled" @click="completeReservation">
           Complete Reservation
         </Button>
       </SheetClose>

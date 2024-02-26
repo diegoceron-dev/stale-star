@@ -6,6 +6,7 @@ interface BookingStore {
   step: string;
   title: string;
   subtitle: string;
+  isOpen: boolean
 }
 
 export const store = reactive<BookingStore>({
@@ -14,4 +15,5 @@ export const store = reactive<BookingStore>({
   step: "destinations",
   title: "",
   subtitle: "",
+  isOpen: true
 });

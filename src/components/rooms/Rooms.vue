@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import CardRoom from "@/components/rooms/CardRoom.vue";
 import type { Room as RoomType } from "@/components/rooms/room.type";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import Container from "@/components/ui/containter/Container.vue";
 import { store as roomStore } from "@/store/roomsStore";
+import { store as bookingStore } from "@/store/bookingStore";
+
+onMounted(() => {
+  bookingStore.title = "Choose your rooms"
+  bookingStore.subtitle = "Check and compare the amenities, you will surely enjoy your stay."
+});
 
 const rooms = computed(() => {
   const sortedItems = [...roomStore.rooms];

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { Separator } from "@/components/ui/separator";
 import DateRange from "@/components/dateRage/DateRange.vue";
 import {
@@ -23,7 +23,6 @@ import { store as bookingStore } from "@/store/bookingStore";
 import { store as destinationsStore } from "@/store/destinationsStore";
 
 const loading = ref(false);
-const isOpen = ref(true);
 
 const selectItem = (resortId: string) => {
   bookingStore.resortSelected = resortId
@@ -36,15 +35,17 @@ const disableSearchRates = computed(() => {
 const searchRates = () => {
   loading.value = !loading.value;
   bookingStore.step = "rooms"
+  bookingStore.isOpen = false
 
   setTimeout(() => {
     loading.value = !loading.value;
   }, 2000);
 };
+
 </script>
 
 <template>
-  <Collapsible v-model:open="isOpen" class="">
+  <Collapsible v-model:open="bookingStore.isOpen" >
     <div class="flex items-center justify-between space-x-4 px-4 mt-2">
       <div class="w-full space-y-1">
         <h2 class="text-2xl font-semibold tracking-tight">
