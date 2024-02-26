@@ -29,6 +29,11 @@ const removeItem = (item: RoomType) => {
   const findItem = shoppingCarStore.rooms.findIndex((c) => c.id == item.id);
 
   if (findItem !== undefined) shoppingCarStore.rooms.splice(findItem, 1);
+
+  if(shoppingCarStore.rooms.length === 0) {
+    bookingStore.isOpen = true
+    bookingStore.step = 'destinations'
+  }
 };
 
 const completeDisabled = computed(() => {
