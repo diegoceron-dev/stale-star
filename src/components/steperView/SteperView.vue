@@ -3,6 +3,7 @@ import Destinations from "@/components/destinations/Destinations.vue";
 import Rooms from "@/components/rooms/Rooms.vue";
 import Payment from "@/components/payment/Payment.vue";
 import { store as bookingStore } from "@/store/bookingStore";
+import { Toaster } from "@/components/ui/sonner";
 </script>
 
 <template>
@@ -17,4 +18,5 @@ import { store as bookingStore } from "@/store/bookingStore";
       <Payment />
     </div>
   </container>
+  <Toaster />
 </template>

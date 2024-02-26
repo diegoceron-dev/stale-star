@@ -11,9 +11,10 @@ import {
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { computed } from "vue";
-import {store as bookingStore} from "@/store/bookingStore"
-import {store as shoppingCarStore} from "@/store/shoppingCarStore"
-                                              
+import { store as bookingStore } from "@/store/bookingStore";
+import { store as shoppingCarStore } from "@/store/shoppingCarStore";
+import type { Room as RoomType } from "@/components/rooms/room.type";
+
 const total = computed(() => {
   let amount = 0;
 
@@ -23,9 +24,15 @@ const total = computed(() => {
 
   return amount;
 });
+
+const removeItem = (item: RoomType) => {
+  const findItem = shoppingCarStore.rooms.findIndex((c) => c.id == item.id);
+
+  if (findItem !== undefined) shoppingCarStore.rooms.splice(findItem, 1);
+};
 </script>
 <template>
-  <SheetContent side="bottom">
+  <SheetContent side="right" class="w-[90%]">
     <SheetHeader>
       <SheetTitle>Booking in Progress</SheetTitle>
       <SheetDescription>
@@ -38,7 +45,7 @@ const total = computed(() => {
         Your cart is empty.
       </div>
       <div v-else>
-        <div class="p-4">
+        <div>
           <div
             v-for="product in shoppingCarStore.rooms"
             :key="product.id"
@@ -48,7 +55,7 @@ const total = computed(() => {
               <Cover
                 :key="product.id"
                 :item="{ id: product.id, cover: product.covers.findLast(()=> true)!}"
-                class="w-[48px] md:w-[96px]"
+                class="w-[48px] md:w-[64px]"
                 aspect-ratio="square"
                 :width="250"
                 :height="230"
@@ -57,18 +64,27 @@ const total = computed(() => {
             <div class="flex-grow flex flex-col">
               <div class="font-medium text-lg flex flex-row justify-between">
                 <div>{{ product.title }}</div>
-                <div class="text-slate-700 font-extralight text-lg">$ {{ product.price }}</div>
+                <div class="text-slate-700 font-extralight text-lg">
+                  $ {{ product.price }}
+                </div>
               </div>
               <div class="italic font-extralight pt-2">
-                  <Button size="sm" variant="outline"> Remove item</Button>
-                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  @click="removeItem(product)"
+                >
+                  Remove item</Button
+                >
+              </div>
             </div>
           </div>
 
-        <div class="flex justify-end items-end mt-2 text-slate-700 font-extralight text-lg">
-          Total: ${{ total }}
-        </div>
-
+          <div
+            class="flex justify-end items-end mt-2 text-slate-700 font-extralight text-lg"
+          >
+            Total: ${{ total }}
+          </div>
         </div>
       </div>
     </div>

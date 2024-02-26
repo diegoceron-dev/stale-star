@@ -12,7 +12,7 @@ import Cover from "@/components/cover/Cover.vue";
 import type { Room as RoomType } from "@/components/rooms/room.type";
 import Autoplay from "embla-carousel-autoplay";
 import { store as shoppingCarStore } from "@/store/shoppingCarStore";
-
+import { toast } from 'vue-sonner'
 import {
   Carousel,
   CarouselContent,
@@ -29,9 +29,21 @@ const props = withDefaults(defineProps<CardRoomProps>(), {});
 const bookIt = (room: RoomType) => {
   if (shoppingCarStore.rooms.length! <= 2) {
     shoppingCarStore.rooms.push(room);
-    shoppingCarStore.showSheet = true;
+    openSheet()
+  } else {
+    toast("Room limit reached", {
+      description: "No more rooms can be booked",
+      action: {
+        label: "Check list!",
+        onClick: () => openSheet()  ,
+      }
+    });
   }
 };
+
+const openSheet = () => {
+  shoppingCarStore.showSheet = true;
+}
 </script>
 
 <template>
