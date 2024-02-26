@@ -9,27 +9,15 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { showSheet, rooms } from "@/store/shoppingCar";
-import ShoppingCar from "@/components/shoppingCar/ShoppingCar.vue";
-import { useStore } from "@nanostores/vue";
-import type { Room as RoomType } from "@/components/rooms/room.type";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { computed } from "vue";
-
-const roomList = useStore(rooms);
-
-const increment = (product: RoomType) => {
-  console.log(product);
-};
-
-const decrement = (product: RoomType) => {
-  console.log(product);
-};
-
+import {store as bookingStore} from "@/store/bookingStore"
+import {store as shoppingCarStore} from "@/store/shoppingCarStore"
+                                              
 const total = computed(() => {
   let amount = 0;
 
-  rooms.get().forEach((room) => {
+  shoppingCarStore.rooms.forEach((room) => {
     amount += room.price;
   });
 
@@ -46,13 +34,13 @@ const total = computed(() => {
     </SheetHeader>
 
     <div class="pt-2">
-      <div v-if="roomList.length === 0" class="text-gray-500">
+      <div v-if="shoppingCarStore.rooms.length === 0" class="text-gray-500">
         Your cart is empty.
       </div>
       <div v-else>
         <div class="p-4">
           <div
-            v-for="product in roomList"
+            v-for="product in shoppingCarStore.rooms"
             :key="product.id"
             class="flex items-start justify-between py-2 space-x-4 border-b"
           >

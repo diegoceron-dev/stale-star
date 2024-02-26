@@ -5,9 +5,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Button from "@/components/ui/button/Button.vue";
-import { ref, watch } from "vue";
-import { showSheet } from "@/store/shoppingCar";
+import { ref } from "vue";
 import ShoppingCar from "@/components/shoppingCar/ShoppingCar.vue";
+import { store as shoppingCarStore } from "@/store/shoppingCarStore";
 
 const showProfileOptions = ref(false);
 
@@ -16,12 +16,8 @@ const clickProfile = () => {
 };
 
 const shoppingCarHandle = (value: boolean) => {
-  showSheet.set(value)
+  shoppingCarStore.showSheet = value
 };
-
-watch(showSheet, (newValue, oldValue) => {
-  shoppingCarHandle(newValue.value!)
-});
 </script>
 
 <template>
@@ -95,7 +91,7 @@ watch(showSheet, (newValue, oldValue) => {
             <div
               class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
             >
-              <Sheet @update:open="shoppingCarHandle">
+              <Sheet @update:open="shoppingCarHandle"  v-bind:open="shoppingCarStore.showSheet!">
                 <SheetTrigger as-child>
                   <button
                     type="button"

@@ -1,26 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeMount } from "vue";
+import { onMounted } from "vue";
 import Cover from "@/components/cover/Cover.vue";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { allInclusive, europeanPlan } from "@/store/destinations";
-import { useStore } from "@nanostores/vue";
-import { resortSelected, title, subtitle } from "@/store/booking";
-
-const allInclusiveList = useStore(allInclusive);
-const europeanPlanList = useStore(europeanPlan);
-const resortId = useStore(resortSelected)
+import { store as bookingStore } from "@/store/bookingStore";
+import { store as destinationsStore} from "@/store/destinationsStore"
 
 onMounted(() => {
-  title.set('Choose your destination')
-  subtitle.set('Get to know all our destinations and be surprised.')
+  bookingStore.title = "Choose your destination"
+  bookingStore.subtitle = "Get to know all our destinations and be surprised."
 });
 
 const handleIdUpdate = (newId: string) => {
-  resortSelected.set(newId)
-}
+  bookingStore.resortSelected = newId
+};
 </script>
 
-<template>  
+<template>
   <div>
     <div class="space-y-1">
       <h3
@@ -33,14 +28,14 @@ const handleIdUpdate = (newId: string) => {
       <ScrollArea class="rounded-md w-[100%] md:w-[90%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
           <Cover
-            v-for="cover in allInclusiveList"
+            v-for="cover in destinationsStore.allInclusive"
             :key="cover.title"
             :item="cover"
             class="w-[130px] md:w-[260px]"
             aspect-ratio="square"
             :width="250"
             :height="230"
-            :id="resortId"
+            :id="bookingStore.resortSelected"
             @update:id="handleIdUpdate"
           />
         </div>
@@ -60,14 +55,14 @@ const handleIdUpdate = (newId: string) => {
       <ScrollArea class="rounded-md w-[100%] md:w-[90%] whitespace-nowrap">
         <div class="flex space-x-10 pb-4">
           <Cover
-            v-for="cover in europeanPlanList"
+            v-for="cover in destinationsStore.europeanPlan"
             :key="cover.title"
             :item="cover"
             class="w-[130px] md:w-[260px]"
             aspect-ratio="square"
             :width="250"
             :height="230"
-            :id="resortId"
+            :id="bookingStore.resortSelected"
             @update:id="handleIdUpdate"
           />
         </div>

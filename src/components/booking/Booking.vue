@@ -12,9 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Button from "@/components/ui/button/Button.vue";
-import { allResorts } from "@/store/destinations";
-import { resortSelected, step, title, subtitle } from "@/store/booking";
-import { useStore } from "@nanostores/vue";
 import { Loader2 } from "lucide-vue-next";
 import { ChevronsUpDown } from "lucide-vue-next";
 import {
@@ -22,30 +19,27 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { store as bookingStore } from "@/store/bookingStore";
+import { store as destinationsStore } from "@/store/destinationsStore";
 
-const allResortsList = useStore(allResorts);
-const resortId = useStore(resortSelected);
-const stepView = useStore(step);
 const loading = ref(false);
 const isOpen = ref(true);
 
 const selectItem = (resortId: string) => {
-  resortSelected.set(resortId);
+  bookingStore.resortSelected = resortId
 };
 
 const disableSearchRates = computed(() => {
-  return String(resortId.value) === "";
+  return String(bookingStore.resortSelected) === "";
 });
 
 const searchRates = () => {
   loading.value = !loading.value;
-  step.set("rooms");
+  bookingStore.step = "rooms"
 
   setTimeout(() => {
     loading.value = !loading.value;
   }, 2000);
-
-  console.log(step.value);
 };
 </script>
 
@@ -54,10 +48,10 @@ const searchRates = () => {
     <div class="flex items-center justify-between space-x-4 px-4 mt-2">
       <div class="w-full space-y-1">
         <h2 class="text-2xl font-semibold tracking-tight">
-          {{ title.value }}
+          {{ bookingStore.title }}
         </h2>
         <p class="text-sm text-muted-foreground">
-         {{ subtitle .value}}
+          {{ bookingStore.subtitle }}
         </p>
       </div>
       <CollapsibleTrigger as-child>
@@ -76,14 +70,14 @@ const searchRates = () => {
             <DateRange />
           </div>
           <div class="">
-            <Select @update:modelValue="selectItem" :modelValue="resortId">
+            <Select @update:modelValue="selectItem" :modelValue="bookingStore.resortSelected">
               <SelectTrigger>
                 <SelectValue placeholder="Select a destination" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel
-                    v-for="brands in allResortsList"
+                    v-for="brands in destinationsStore.allResorts"
                     :key="brands.brand"
                   >
                     {{ brands.brand }}
